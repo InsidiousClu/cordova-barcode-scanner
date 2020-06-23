@@ -5,12 +5,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="org.apache.cordova.plugin.BarcodeScannerActivity">
+        tools:context="com.incidiousclu.cordova.barcodescanner.BarcodeScannerActivity">
 
-    <fragment android:id="@+id/barcode_fragment" android:name="info.androidhive.barcode.BarcodeReader"
+    <fragment android:id="@+id/barcode_fragment"
+            android:name="info.androidhive.barcode.BarcodeReader"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:auto_focus="true"
             app:use_flash="false" />
+
+
+    <Button
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

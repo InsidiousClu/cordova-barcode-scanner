@@ -27,10 +27,10 @@
             <uses-feature android:name="android.hardware.camera" android:required="true"/>
         </config-file>
         <framework src="src/android/barcodescanner.gradle" custom="true" type="gradleReference"/>
+        <source-file src="src/android/res/layout/activity_barcode.xml" target-dir="res/layout" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScanner.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
-        <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerActivity.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerReceiver.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
-        <source-file src="src/android/res/layout/activity_barcode.xml" target-dir="res/layout/activity_barcode.xml" />
+        <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerActivity.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <hook type="after_plugin_install" src="hooks/hookR.js" />
     </platform>
 </plugin>
