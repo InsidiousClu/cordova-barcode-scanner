@@ -1,4 +1,4 @@
-package org.apache.cordova.plugin;
+package com.incidiousclu.cordova.barcodescanner;
 
 import android.content.BroadcastReceiver;
 import android.content.Intent;
@@ -10,8 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 
-import static org.apache.cordova.plugin.BarcodeScannerActivity.BARCODE_MULTIPLE;
-import static org.apache.cordova.plugin.BarcodeScannerActivity.FLUSH_AWAY;
+import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.FLUSH_AWAY;
+import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_MULTIPLE;
+import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_SINGLE;
 
 public class BarcodeScanner extends CordovaPlugin {
     CallbackContext callbackContext;
@@ -29,7 +30,9 @@ public class BarcodeScanner extends CordovaPlugin {
         Intent i = new Intent(this.cordova.getContext(), BarcodeScannerActivity.class);
         BroadcastReceiver bt = new BarcodeScannerReceiver(this.callbackContext);
         IntentFilter filter = new IntentFilter();
+
         filter.addAction(BARCODE_MULTIPLE);
+        filter.addAction(BARCODE_SINGLE);
         filter.addAction(FLUSH_AWAY);
 
         this.cordova.getActivity().startActivity(i);

@@ -1,4 +1,4 @@
-package org.apache.cordova.plugin;
+package com.incidiousclu.cordova.barcodescanner;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.FLUSH_AWAY;
+import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_MULTIPLE;
+
 public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
-
-    public static final String BARCODE_MULTIPLE = "com.incidiousclu.action.BARCODE_MULTIPLE";
-    public static final String FLUSH_AWAY = "com.incidiousclu.action.FLUSH_AWAY";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
