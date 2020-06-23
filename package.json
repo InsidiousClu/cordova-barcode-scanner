@@ -1,0 +1,30 @@
+{
+  "author": {
+    "name": "Appivo AB"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/appivo/cordova-appivo-barcodescanner/issues"
+  },
+  "bundleDependencies": true,
+  "deprecated": false,
+  "description": "Plugin to scan barcodes using camera",
+  "homepage": "https://gitlab.com/appivo/cordova-appivo-barcodescanner#readme",
+  "keywords": [
+    "barcode",
+    "scanner",
+    "QR",
+    "cordova",
+    "plugin"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "cordova-appivo-barcodescanner",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/appivo/cordova-appivo-barcodescanner.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

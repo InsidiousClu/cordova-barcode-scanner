@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-incidious-barcodescanner" version="1.0.0">
+    <name>BarcodeScanner</name>
+
+    <description>You can use the BarcodeScanner plugin to scan different types of barcodes (using the device's camera) and get the metadata encoded in them for processing within your application.</description>
+    <engines>
+        <engine name="cordova" version=">=7.1.0"/>
+        <engine name="cordova-android" version=">=6.3.0"/>
+    </engines>
+
+    <js-module src="www/barcodescanner.js" name="BarcodeScanner">
+        <clobbers target="cordova.plugins.barcodeScanner"/>
+    </js-module>
+
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="BarcodeScanner">
+                <param name="android-package" value="org.apache.cordova.plugin.BarcodeScanner"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="application">
+            <activity android:name="org.apache.cordova.plugin.BarcodeScannerActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:theme="@style/Theme.AppCompat.Light"  android:exported="false"/>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CAMERA"/>
+            <uses-permission android:name="android.permission.FLASHLIGHT"/>
+            <uses-feature android:name="android.hardware.camera" android:required="true"/>
+        </config-file>
+        <framework src="src/android/barcodescanner.gradle" custom="true" type="gradleReference"/>
+        <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScanner.java" target-dir="src/org/apache/cordova/plugin" />
+        <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerActivity.java" target-dir="src/org/apache/cordova/plugin" />
+        <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerReceiver.java" target-dir="src/org/apache/cordova/plugin" />
+        <source-file src="src/android/res/layout/activity_barcode.xml" target-dir="res/layout/activity_barcode.xml" />
+        <hook type="after_plugin_install" src="hooks/hookR.js" />
+    </platform>
+</plugin>
