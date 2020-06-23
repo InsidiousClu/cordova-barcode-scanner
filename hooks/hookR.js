@@ -27,6 +27,7 @@ var configobj = JSON.parse(fs.readFileSync(ourconfigfile, 'utf8'));
 var filestoreplace = [
     "platforms/android/app/src/main/java/org/apache/cordova/plugin/BarcodeScannerActivity.java"
 ];
+
 filestoreplace.forEach(function(val, index, array) {
     if (fs.existsSync(val)) {
         console.log("Android platform available !");
@@ -34,7 +35,7 @@ filestoreplace.forEach(function(val, index, array) {
         var packageName = configobj.installed_plugins["cordova-incidious-barcodescanner"]["PACKAGE_NAME"];
         console.log("With the package name: " + packageName);
         console.log("Adding import for R.java");
-        replace_string_in_file(val, "package org.apache.cordova.plugin;\n", "package org.apache.cordova.plugin;;\n\nimport " + packageName + ".R;");
+        replace_string_in_file(val, "package org.apache.cordova.plugin;", "package org.apache.cordova.plugin;\n\nimport " + packageName + ".R;");
 
     } else {
         console.log("No android platform found! :(");
