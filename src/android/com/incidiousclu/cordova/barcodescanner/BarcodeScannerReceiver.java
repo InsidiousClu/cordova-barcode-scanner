@@ -58,7 +58,7 @@ public class BarcodeScannerReceiver extends BroadcastReceiver {
                     final JSONArray scannedCodes = new JSONArray(res);
                     JSONObject object = new JSONObject();
                     object.put("codes", scannedCodes);
-                    PluginResult result = new PluginResult(PluginResult.Status.OK, "");
+                    PluginResult result = new PluginResult(PluginResult.Status.OK, object);
                     this.context.sendPluginResult(result);
                 } catch (JSONException e) {
                     this.context.error(e.getMessage());
