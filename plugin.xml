@@ -20,6 +20,7 @@
         </config-file>
         <config-file target="AndroidManifest.xml" parent="application">
             <activity android:name="com.incidiousclu.cordova.barcodescanner.BarcodeScannerActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:theme="@style/Theme.AppCompat.Light"  android:exported="false"/>
+            <activity android:name="com.incidiousclu.cordova.barcodescanner.ScannedCodesActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:theme="@style/Theme.AppCompat.Light"  android:exported="false"/>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.CAMERA"/>
@@ -27,11 +28,14 @@
             <uses-feature android:name="android.hardware.camera" android:required="true"/>
         </config-file>
         <framework src="src/android/barcodescanner.gradle" custom="true" type="gradleReference"/>
+        <source-file src="src/android/res/layout/barcode_item.xml" target-dir="res/layout" />
+        <source-file src="src/android/res/layout/barcode_list.xml" target-dir="res/layout" />
         <source-file src="src/android/res/layout/activity_barcode.xml" target-dir="res/layout" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScanner.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeReaderImpl.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerReceiver.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerActivity.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
+        <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/ScannedCodesActivity.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <hook type="after_plugin_install" src="hooks/hookR.js" />
     </platform>
 </plugin>

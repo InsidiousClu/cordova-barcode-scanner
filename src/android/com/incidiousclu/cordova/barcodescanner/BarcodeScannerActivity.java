@@ -7,7 +7,6 @@ import com.google.android.gms.vision.barcode.Barcode;
 import androidx.appcompat.app.AppCompatActivity;
 import info.androidhive.barcode.BarcodeReader;
 import android.util.SparseArray;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -21,6 +20,7 @@ import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.FLU
 import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_MULTIPLE;
 
 public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
+    private static int LIST_EDITED = 255;
     private ArrayList<String> scannedCodes = new ArrayList<String>(10);
 
     @Override
@@ -28,10 +28,28 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode);
         handleButtonCreate();
+        handleOpenListButtonCreate();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
+
+    private void handleListIntentCreate() {
+        Intent list = new Intent(this.getBaseContext(), ScannedCodesActivity.class);
+        list.putStringArrayListExtra("scanned", scannedCodes);
+        startActivityForResult(list, LIST_EDITED);
+    }
+
+
+    private void handleOpenListButtonCreate() {
+        Button button = (Button) findViewById(R.id.open_list);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleListIntentCreate();
+            }
+        });
+    }
 
     private void handleButtonCreate() {
         Intent intent = new Intent();

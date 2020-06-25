@@ -54,16 +54,14 @@ public class BarcodeScannerReceiver extends BroadcastReceiver {
             final List<String> res = extras.getStringArrayList("scannedBarcodes");
             if(res != null) {
                 try {
-                    Log.d("STATE", res.toString());
                     final JSONArray scannedCodes = new JSONArray(res);
-                    JSONObject object = new JSONObject();
+                    final JSONObject object = new JSONObject();
                     object.put("codes", scannedCodes);
                     PluginResult result = new PluginResult(PluginResult.Status.OK, object);
                     this.context.sendPluginResult(result);
                 } catch (JSONException e) {
                     this.context.error(e.getMessage());
                 }
-
             } else {
                 this.context.error("SCANNED_BARCODES are empty");
             }

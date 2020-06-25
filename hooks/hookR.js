@@ -25,7 +25,8 @@ var configobj = JSON.parse(fs.readFileSync(ourconfigfile, 'utf8'));
 // Add java files where you want to add R.java imports in the following array
 
 var filestoreplace = [
-    "platforms/android/app/src/main/java/com/incidiousclu/cordova/barcodescanner/BarcodeScannerActivity.java"
+    "platforms/android/app/src/main/java/com/incidiousclu/cordova/barcodescanner/BarcodeScannerActivity.java",
+    "platforms/android/app/src/main/java/com/incidiousclu/cordova/barcodescanner/ScannedCodesActivity.java"
 ];
 
 filestoreplace.forEach(function(val, index, array) {
