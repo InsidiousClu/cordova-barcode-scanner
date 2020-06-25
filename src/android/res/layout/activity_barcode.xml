@@ -18,17 +18,24 @@
             android:layout_y="634dp"
             android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/barcode_fragment"
-            app:layout_constraintStart_toEndOf="@+id/barcode_fragment"
+            app:layout_constraintEnd_toStartOf="@+id/layout"
+            app:layout_constraintStart_toEndOf="@+id/layout"
             tools:visibility="visible" />
 
-    <fragment
-            android:id="@+id/barcode_fragment"
-            android:name="info.androidhive.barcode.BarcodeReader"
+    <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:auto_focus="true"
-            app:use_flash="false" />
+            android:clickable="true">
 
+        <fragment
+                android:id="@+id/barcode_fragment"
+                android:scaleType="centerCrop"
+                android:name="com.incidiousclu.cordova.barcodescanner.BarcodeReaderImpl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:auto_focus="true"
+                app:use_flash="false" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

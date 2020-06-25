@@ -7,21 +7,29 @@ import com.google.android.gms.vision.barcode.Barcode;
 import androidx.appcompat.app.AppCompatActivity;
 import info.androidhive.barcode.BarcodeReader;
 import android.util.SparseArray;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_SINGLE;
 import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.FLUSH_AWAY;
 import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_MULTIPLE;
 
 public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
+    private ArrayList<String> scannedCodes = new ArrayList<String>(10);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode);
         handleButtonCreate();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
 
@@ -32,6 +40,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putStringArrayListExtra("scannedBarcodes", scannedCodes);
                 sendBroadcast(intent);
                 finish();
             }
@@ -40,24 +49,38 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
 
     @Override
     public void onScanned(Barcode barcode) {
+        Intent intent = new Intent();
+        intent.setAction(BARCODE_SINGLE);
+        if(!scannedCodes.contains(barcode.displayValue)) {
+            scannedCodes.add(barcode.displayValue);
+        }
+        sendBroadcast(intent);
     }
 
     @Override
     public void onScannedMultiple(List<Barcode> list) {
         Intent intent = new Intent();
         intent.setAction(BARCODE_MULTIPLE);
-        intent.putExtra("list",list.toString());
+        for(int i = 0; i < list.size(); i++) {
+            final Barcode scanned = list.get(i);
+            if(!scannedCodes.contains(scanned.displayValue)) {
+                scannedCodes.add(scanned.displayValue);
+            }
+        }
         sendBroadcast(intent);
     }
 
+
+
+
     @Override
     public void onBitmapScanned(SparseArray<Barcode> sparseArray) {
-
+        //TODO:implement me
     }
 
     @Override
     public void onScanError(String s) {
-
+        //TODO:implement me
     }
 
     @Override
