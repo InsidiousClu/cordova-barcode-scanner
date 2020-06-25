@@ -6,13 +6,42 @@
                                                    tools:context="com.incidiousclu.cordova.barcodescanner.ScannedCodesActivity"
                                                    android:layout_height="match_parent">
 
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Scanned Codes"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
             android:id="@+id/mobile_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="68dp"
+            android:layout_marginBottom="90dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+            android:id="@+id/submit_button"
+            android:layout_width="127dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:layout_x="158dp"
+            android:layout_y="634dp"
+            android:text="Submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

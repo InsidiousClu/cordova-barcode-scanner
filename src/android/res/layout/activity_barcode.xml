@@ -8,22 +8,6 @@
         tools:context="com.incidiousclu.cordova.barcodescanner.BarcodeScannerActivity">
 
     <Button
-            android:id="@+id/submit_button"
-            android:layout_width="127dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
-            android:layout_x="158dp"
-            android:layout_y="634dp"
-            android:text="Submit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/layout"
-            app:layout_constraintHorizontal_bias="0.28"
-            app:layout_constraintStart_toEndOf="@+id/layout"
-            tools:visibility="visible" />
-
-    <Button
             android:id="@+id/open_list"
             android:layout_width="146dp"
             android:layout_height="48dp"

@@ -12,13 +12,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class BarcodeScannerReceiver extends BroadcastReceiver {
     private CallbackContext context;
-    private List<String> scannedBarcodes = new ArrayList<String>();
 
     public static final String FLUSH_AWAY = "com.incidiousclu.action.FLUSH_AWAY";
     public static final String BARCODE_MULTIPLE = "com.incidiousclu.action.BARCODE_MULTIPLE";

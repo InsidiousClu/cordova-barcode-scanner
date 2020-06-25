@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -44,6 +45,8 @@ public class BarcodeScanner extends CordovaPlugin {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
+        Log.d("REQUEST_CODE", Integer.toString(requestCode));
+        Log.d("RESULT_CODE", Integer.toString(resultCode));
     }
 
     public void onRestoreStateForActivityResult(Bundle state, CallbackContext callbackContext) {
