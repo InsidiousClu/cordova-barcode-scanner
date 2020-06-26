@@ -9,7 +9,7 @@
     </engines>
 
     <js-module src="www/barcodescanner.js" name="BarcodeScanner">
-        <clobbers target="cordova.plugins.barcodeScanner"/>
+        <clobbers target="cordova.plugins.mvBarcodeScanner"/>
     </js-module>
 
     <platform name="android">
