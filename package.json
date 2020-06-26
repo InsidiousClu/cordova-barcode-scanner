@@ -1,14 +1,14 @@
 {
   "author": {
-    "name": "Appivo AB"
+    "name": "InsidiousClu BarcodeScanner"
   },
   "bugs": {
-    "url": "https://gitlab.com/appivo/cordova-appivo-barcodescanner/issues"
+    "url": "https://github.com/InsidiousClu/cordova-barcode-scanner/issues"
   },
   "bundleDependencies": true,
   "deprecated": false,
   "description": "Plugin to scan barcodes using camera",
-  "homepage": "https://gitlab.com/appivo/cordova-appivo-barcodescanner#readme",
+  "homepage": "https://github.com/InsidiousClu/cordova-barcode-scanner#readme",
   "keywords": [
     "barcode",
     "scanner",
@@ -18,10 +18,10 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "name": "cordova-appivo-barcodescanner",
+  "name": "cordova-incidousclu-barcodescanner",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/appivo/cordova-appivo-barcodescanner.git"
+    "url": "git+https://github.com/InsidiousClu/cordova-barcode-scanner/.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
