@@ -1,18 +1,11 @@
 var exec = require('cordova/exec');
 
-function BarcodeScanner() {}
+function BarcodeScannerMV() {}
 
-BarcodeScanner.prototype.scan = function(successCallback, errorCallback, opts)  {
+BarcodeScannerMV.prototype.scan = function(successCallback, errorCallback, opts)  {
     opts = opts || {}
     exec(successCallback, errorCallback, "BarcodeScanner", "scan", [opts])
 }
+var mvScanner = new BarcodeScannerMV();
+module.exports = mvScanner;
 
-BarcodeScanner.install = function() {
-    if (!window.plugins) {
-        window.plugins = {};
-    }
-    window.plugins.barcodeScanner = new BarcodeScanner();
-    return window.plugins.barcodeScanner;
-}
-
-cordova.addConstructor(BarcodeScanner.install);
