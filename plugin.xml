@@ -26,6 +26,7 @@
             <uses-permission android:name="android.permission.CAMERA"/>
             <uses-permission android:name="android.permission.FLASHLIGHT"/>
             <uses-feature android:name="android.hardware.camera" android:required="true"/>
+            <uses-library android:name="org.apache.http.legacy" android:required="false" />
         </config-file>
         <framework src="src/android/barcodescanner.gradle" custom="true" type="gradleReference"/>
         <source-file src="src/android/res/layout/barcode_item.xml" target-dir="res/layout" />
