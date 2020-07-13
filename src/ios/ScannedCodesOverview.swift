@@ -78,5 +78,5 @@ class ScannedCodesOverview: UIViewController, UITableViewDelegate, UITableViewDa
              tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-   
+
 }
