@@ -16,7 +16,7 @@
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
         <feature name="BarcodeScanner">
-            <param name="ios-package" value="com.incidiousclu.cordova.barcodescanner.BarcodeScanner" />
+            <param name="ios-package" value="CDVVisionBarcodeScanner" />
         </feature>
         </config-file>
         <!--  Plugin Entrypoint  -->
