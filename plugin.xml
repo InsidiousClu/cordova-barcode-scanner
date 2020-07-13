@@ -12,6 +12,29 @@
         <clobbers target="cordova.plugins.mvBarcodeScanner"/>
     </js-module>
 
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+        <feature name="BarcodeScanner">
+            <param name="ios-package" value="BarcodeScanner" />
+        </feature>
+        </config-file>
+        <!--  Plugin Entrypoint  -->
+        <source-file src="src/ios/BarcodeScanner.swift" />
+        <!--  Apple Vision -->
+        <source-file src="src/ios/FrameProcessor.swift"/>
+        <!--  Camera View  -->
+        <source-file src="src/ios/BarcodeScannerCtrl.swift"/>
+        <resource-file src="src/ios/BarcodeScannerCtrl.xib"/>
+        <!--  Scanned Codes TableView  -->
+        <source-file src="src/ios/ScannedCodesOverview.swift"/>
+        <resource-file src="src/ios/ScannedCodesOverview.xib"/>
+        <!--  Dependencies   -->
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+        <framework src="UIKit.framework"/>
+        <framework src="Vision.framework"/>
+    </platform>
+
     <platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="BarcodeScanner">
