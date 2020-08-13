@@ -115,6 +115,7 @@ class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
         super.viewDidDisappear(animated)
         self.frameProcessor.close()
         self.dismiss(animated: animated)
+        self.pluginContext.viewController.dismiss(animated: true)
     }
     
 }
