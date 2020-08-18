@@ -6,6 +6,7 @@ import Vision
 class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
     
     var scannedCodes: [String] = [String]()
+    var scannedQRCodes: [String] = [String]()
     @IBOutlet var previewView: UIView!
     var frameProcessor: FrameProcessor!
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?

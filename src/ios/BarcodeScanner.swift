@@ -6,6 +6,9 @@
         let ctrl = BarcodeScannerCtrl()
         ctrl.pluginContext = self
         ctrl.command = command
+        if #available(iOS 13.0, *) {
+            ctrl.isModalInPresentation = true
+        }
         self.viewController.present(ctrl, animated: false)
     }
 }
