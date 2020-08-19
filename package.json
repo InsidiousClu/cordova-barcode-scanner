@@ -17,7 +17,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "name": "cordova-incidousclu-barcodescanner",
+  "name": "cordova-incidious-barcodescanner",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/InsidiousClu/cordova-barcode-scanner/.git"
