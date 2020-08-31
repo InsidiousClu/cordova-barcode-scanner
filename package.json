@@ -1,7 +1,5 @@
 {
-  "author": {
-    "name": "InsidiousClu BarcodeScanner"
-  },
+  "author": "InsidiousClu BarcodeScanner",
   "bugs": {
     "url": "https://github.com/InsidiousClu/cordova-barcode-scanner/issues"
   },
@@ -25,5 +23,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

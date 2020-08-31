@@ -12,7 +12,8 @@ class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     var pluginContext: CDVPlugin!
     var command: CDVInvokedUrlCommand!
-    
+    var mode: String = "BARCODE"
+
     private lazy var drawLayer: CAShapeLayer = {
         let drawLayer = CAShapeLayer()
         self.view.layer.addSublayer(drawLayer)
@@ -25,35 +26,46 @@ class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
         return drawLayer
     }()
 
-    
+
     func onBarcodesRead(barcodes: [VNBarcodeObservation]) {
         DispatchQueue.main.async {
              let path = CGMutablePath()
              for barcode in barcodes {
                 self.drawRect(path, barcode: barcode)
-                guard let payload = barcode.payloadStringValue else { continue }
-                if !self.scannedCodes.contains(payload) {
-                    self.scannedCodes.append(payload)
+
+
+                if ((barcode.barcodeDescriptor as? CIQRCodeDescriptor) != nil) && self.mode == "QR" {
+                    guard let payload = barcode.payloadStringValue else { continue }
+                    if !self.scannedCodes.contains(payload) {
+                        self.scannedCodes.append(payload)
+                    }
                 }
+                if ((barcode.barcodeDescriptor as? CIQRCodeDescriptor) == nil) && self.mode == "BARCODE" {
+                    guard let payload = barcode.payloadStringValue else { continue }
+                    if !self.scannedCodes.contains(payload) {
+                        self.scannedCodes.append(payload)
+                    }
+                }
+
             }
             self.drawLayer.path = path
         }
     }
-    
-    
+
+
     private func drawRect(_ path: CGMutablePath, barcode: VNBarcodeObservation) {
         let bottomLeft = self.convert(point: barcode.bottomLeft)
         let topLeft = self.convert(point: barcode.topLeft)
         let topRight = self.convert(point: barcode.topRight)
         let bottomRight = self.convert(point: barcode.bottomRight)
         let sequence: [CGPoint] = [topRight, bottomRight, bottomLeft, topLeft]
-    
-        if barcode.symbology == .QR {
+        if self.mode == "QR" && barcode.barcodeDescriptor as? CIQRCodeDescriptor != nil {
             path.move(to: topLeft)
             for seq in sequence {
                 path.addLine(to: seq)
             }
-        } else {
+        }
+        if self.mode == "BARCODE" && barcode.barcodeDescriptor as? CIQRCodeDescriptor == nil {
             let rect = self.adjustBoundsToScreen(barcode: barcode)
             path.addRect(rect)
         }
