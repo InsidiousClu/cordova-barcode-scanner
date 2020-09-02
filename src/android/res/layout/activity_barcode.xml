@@ -28,15 +28,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true">
-
         <fragment
-                android:id="@+id/barcode_fragment"
-                android:scaleType="centerCrop"
-                android:name="com.incidiousclu.cordova.barcodescanner.BarcodeReaderImpl"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:auto_focus="true"
-                app:use_flash="false" />
+                android:id="@+id/barcode"
+                android:name="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                app:gvb_auto_focus="true"
+                app:gvb_code_format="all_format"
+                app:gvb_flash="false"
+                app:gvb_rect_colors="@array/rect_color" />
 
     </LinearLayout>
 

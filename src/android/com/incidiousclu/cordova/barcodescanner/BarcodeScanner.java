@@ -21,17 +21,22 @@ public class BarcodeScanner extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if(action.equals("scan")) {
+            String scanningMode = "BARCODE";
             this.callbackContext = callbackContext;
-            scan();
+            if(args.length() >= 1) {
+                scanningMode = args.getString(0);
+            }
+            scan(scanningMode);
             return true;
         }
         return false;
     }
 
-    private void scan() {
+    private void scan(String scanningMode) {
         Intent i = new Intent(this.cordova.getContext(), BarcodeScannerActivity.class);
         BroadcastReceiver bt = new BarcodeScannerReceiver(this.callbackContext);
         IntentFilter filter = new IntentFilter();
+        i.putExtra("MODE", scanningMode);
 
         filter.addAction(BARCODE_MULTIPLE);
         filter.addAction(BARCODE_SINGLE);
