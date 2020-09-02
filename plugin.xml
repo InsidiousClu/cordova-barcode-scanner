@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-incidious-barcodescanner" version="1.1.0">
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-incidious-barcodescanner" version="1.1.1">
     <name>BarcodeScanner</name>
 
     <description>You can use the BarcodeScanner plugin to scan different types of barcodes (using the device's camera) and get the metadata encoded in them for processing within your application.</description>
@@ -54,9 +54,9 @@
         <source-file src="src/android/res/layout/barcode_item.xml" target-dir="res/layout" />
         <source-file src="src/android/res/layout/barcode_list.xml" target-dir="res/layout" />
         <source-file src="src/android/res/layout/activity_barcode.xml" target-dir="res/layout" />
-        <source-file src="src/android/res/values/colors.xml" target-dir="res/values" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScanner.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerReceiver.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
+        <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeReaderImpl.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerActivity.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/ScannedCodesActivity.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <hook type="after_plugin_install" src="hooks/hookR.js" />

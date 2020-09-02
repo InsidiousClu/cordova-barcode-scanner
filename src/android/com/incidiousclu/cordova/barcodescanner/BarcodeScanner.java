@@ -21,8 +21,8 @@ public class BarcodeScanner extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if(action.equals("scan")) {
-            String scanningMode = "BARCODE";
             this.callbackContext = callbackContext;
+            String scanningMode = "BARCODE";
             if(args.length() >= 1) {
                 scanningMode = args.getString(0);
             }
