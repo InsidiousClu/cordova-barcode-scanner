@@ -80,7 +80,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
             final Barcode scanned = list.get(i);
             if(!scannedCodes.contains(scanned.displayValue)) {
                 if((this.mode.equals("QR") && scanned.format == Barcode.QR_CODE) || this.mode.equals("BARCODE") && scanned.format != Barcode.QR_CODE) {
-                    scannedCodes.add(scanned.getBarcode().displayValue);
+                    scannedCodes.add(scanned.displayValue);
                 }
             }
         }
