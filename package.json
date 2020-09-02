@@ -3,7 +3,6 @@
   "bugs": {
     "url": "https://github.com/InsidiousClu/cordova-barcode-scanner/issues"
   },
-  "deprecated": false,
   "description": "Plugin to scan barcodes using camera",
   "homepage": "https://github.com/InsidiousClu/cordova-barcode-scanner#readme",
   "keywords": [
