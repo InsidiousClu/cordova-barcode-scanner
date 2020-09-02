@@ -56,7 +56,6 @@
         <source-file src="src/android/res/layout/activity_barcode.xml" target-dir="res/layout" />
         <source-file src="src/android/res/values/colors.xml" target-dir="res/values" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScanner.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
-        <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeReaderImpl.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerReceiver.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/BarcodeScannerActivity.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />
         <source-file src="src/android/com/incidiousclu/cordova/barcodescanner/ScannedCodesActivity.java" target-dir="src/com/incidiousclu/cordova/barcodescanner" />

@@ -10,6 +10,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import androidx.appcompat.app.AppCompatActivity;
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
 
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,6 +24,7 @@ import java.util.List;
 import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_SINGLE;
 import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_MULTIPLE;
 
+
 public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeRetriever {
     private ArrayList<String> scannedCodes = new ArrayList<String>(10);
     private static int LIST_OF_BARCODES = 255;
@@ -35,6 +37,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
 
         final Intent intent = getIntent();
         this.mode = intent.getStringExtra("MODE");
+        Log.d("MODE", this.mode);
 
         BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
 
@@ -42,8 +45,11 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
             barcodeCapture.setRetrieval(this);
             barcodeCapture.setShowDrawRect(true)
                     .setShouldShowText(true)
-                    .setBarcodeFormat(this.mode.equals("QR") ? Barcode.QR_CODE : Barcode.CODABAR | Barcode.CODE_39 | Barcode.CODE_93 | Barcode.CODE_128 | Barcode.UPC_A | Barcode.UPC_E | Barcode.EAN_8 | Barcode.EAN_13 | Barcode.ITF);
-            barcodeCapture.refresh();
+                    .shouldAutoFocus(true)
+                    .setTouchAsCallback(false)
+                    .setBarcodeFormat(Barcode.ALL_FORMATS);
+
+            barcodeCapture.refresh(true);
         }
 
         handleOpenListButtonCreate();
@@ -82,7 +88,9 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         Intent intent = new Intent();
         intent.setAction(BARCODE_SINGLE);
         if(!scannedCodes.contains(barcode.displayValue)) {
-            scannedCodes.add(barcode.displayValue);
+            if((this.mode.equals("QR") && barcode.format == Barcode.QR_CODE) || this.mode.equals("BARCODE") && barcode.format != Barcode.QR_CODE) {
+                scannedCodes.add(barcode.displayValue);
+            }
         }
         sendBroadcast(intent);
     }
@@ -93,8 +101,11 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         intent.setAction(BARCODE_MULTIPLE);
         for(int i = 0; i < list.size(); i++) {
             final BarcodeGraphic scanned = list.get(i);
+            final Barcode code = scanned.getBarcode();
             if(!scannedCodes.contains(scanned.getBarcode().displayValue)) {
-                scannedCodes.add(scanned.getBarcode().displayValue);
+                if((this.mode.equals("QR") && code.format == Barcode.QR_CODE) || this.mode.equals("BARCODE") && code.format != Barcode.QR_CODE) {
+                    scannedCodes.add(scanned.getBarcode().displayValue);
+                }
             }
         }
         sendBroadcast(intent);
