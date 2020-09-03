@@ -31,6 +31,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode);
         handleOpenListButtonCreate();
+        this.mode = getIntent().getStringExtra("MODE");
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
