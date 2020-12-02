@@ -4,7 +4,7 @@ import Vision
 
 @available(iOS 11.0, *)
 class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
-    
+
     var scannedCodes: [String] = [String]()
     var scannedQRCodes: [String] = [String]()
     @IBOutlet var previewView: UIView!
@@ -70,20 +70,20 @@ class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
             path.addRect(rect)
         }
     }
-    
+
     private func convert(point: CGPoint) -> CGPoint {
         return CGPoint(x: point.x * view.bounds.size.width,
                        y: (1 - point.y) * view.bounds.size.height)
     }
 
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.layer.drawsAsynchronously = true
         initFrameProcessor()
         createButton()
     }
-    
+
 
     private func initFrameProcessor() {
         frameProcessor = FrameProcessor()
@@ -94,7 +94,7 @@ class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
         frameProcessor.delegate = self
         self.view.layer.insertSublayer(cameraPreviewLayer!, at:0)
     }
-    
+
     func adjustBoundsToScreen(barcode: VNBarcodeObservation) -> CGRect {
         let xCord = barcode.boundingBox.origin.x * self.previewView.frame.size.width
         var yCord = (1 - barcode.boundingBox.origin.y) * self.previewView.frame.size.height
@@ -105,8 +105,8 @@ class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
 
         return CGRect(x: xCord, y: yCord, width: width, height: height)
     }
-    
-    
+
+
     func createButton() {
         let scanResults = UIButton(frame: CGRect(x: (view.frame.width / 2) - 75, y: view.frame.height - 95, width: 150, height: 50))
         scanResults.layer.cornerRadius = 8.0
@@ -114,8 +114,15 @@ class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
         scanResults.setTitle("Show Scanned", for: .normal)
         scanResults.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(scanResults)
+
+        let cancel = UIButton(frame: CGRect(x: (view.frame.width * 3 / 4) - 75, y: view.frame.height - 95, width: 150, height: 50))
+        cancel.layer.cornerRadius = 8.0
+        cancel.backgroundColor = UIColor.systemBlue
+        cancel.setTitle("Cancel", for: .normal)
+        cancel.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
+        self.view.addSubview(cancel)
     }
-    
+
     @objc func buttonAction() {
         let scannedCodesCtrl: ScannedCodesOverview = ScannedCodesOverview()
         scannedCodesCtrl.scannedCodes = scannedCodes
@@ -124,11 +131,17 @@ class BarcodeScannerCtrl: UIViewController, FrameProcessorDelegate {
         self.present(scannedCodesCtrl, animated: true)
     }
 
+    @objc func cancelAction () {
+        let result = CDVPluginResult(status: CDVCommandStatus_OK)
+        pluginContext.commandDelegate!.send(result, callbackId: command.callbackId)
+        pluginContext.viewController.dismiss(animated: true)
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.frameProcessor.close()
         self.dismiss(animated: animated)
         self.pluginContext.viewController.dismiss(animated: true)
     }
-    
+
 }

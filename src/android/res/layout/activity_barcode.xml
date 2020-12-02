@@ -31,7 +31,7 @@
             android:layout_marginBottom="32dp"
             android:layout_x="158dp"
             android:layout_y="634dp"
-            android:text="Close"
+            android:text="Cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintEnd_toEndOf="@+id/layout"
