@@ -18,9 +18,23 @@
             android:layout_y="634dp"
             android:text="Show Scanned"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/layout"
+            app:layout_constraintStart_toStartOf="@+id/layout"
             app:layout_constraintHorizontal_bias="0.7"
-            app:layout_constraintStart_toEndOf="@+id/layout"
+            tools:visibility="visible" />
+
+    <Button
+            android:id="@+id/close"
+            android:layout_width="146dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:layout_x="158dp"
+            android:layout_y="634dp"
+            android:text="Cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintEnd_toEndOf="@+id/layout"
             tools:visibility="visible" />
 
     <LinearLayout

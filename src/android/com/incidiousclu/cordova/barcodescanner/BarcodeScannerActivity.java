@@ -20,6 +20,7 @@ import java.util.List;
 
 import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_SINGLE;
 import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.BARCODE_MULTIPLE;
+import static com.incidiousclu.cordova.barcodescanner.BarcodeScannerReceiver.FLUSH_AWAY;
 
 public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
     private ArrayList<String> scannedCodes = new ArrayList<String>(10);
@@ -31,6 +32,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode);
         handleOpenListButtonCreate();
+        handleCloseButtonCreate();
         this.mode = getIntent().getStringExtra("MODE");
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -41,6 +43,16 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         Intent list = new Intent(this.getBaseContext(), ScannedCodesActivity.class);
         list.putStringArrayListExtra("scanned", scannedCodes);
         startActivityForResult(list, LIST_OF_BARCODES);
+    }
+
+    private void handleCloseIntentCreate () {
+        Intent intent = new Intent();
+        intent.setAction(FLUSH_AWAY);
+        intent.putStringArrayListExtra("scannedBarcodes", scannedCodes);
+
+        sendBroadcast(intent);
+        setResult(RESULT_OK);
+        finish();
     }
 
     @Override
@@ -57,6 +69,16 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
             @Override
             public void onClick(View v) {
                 handleListIntentCreate();
+            }
+        });
+    }
+
+    private void handleCloseButtonCreate() {
+        Button buttton = (Button) findViewById(R.id.close);
+        buttton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleCloseIntentCreate();
             }
         });
     }
